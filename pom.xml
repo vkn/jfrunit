@@ -27,12 +27,6 @@
     <module>jfrunit-core</module>
   </modules>
 
-  <parent>
-    <groupId>org.moditect</groupId>
-    <artifactId>moditect-org-parent</artifactId>
-    <version>1.2.0.Final</version>
-  </parent>
-
   <groupId>org.moditect.jfrunit</groupId>
   <artifactId>jfrunit-aggregator</artifactId>
   <version>1.0.0-SNAPSHOT</version>
@@ -47,14 +41,15 @@
     <project.identifier>jfrunit</project.identifier>
     <project.github.repository>moditect/jfrunit</project.github.repository>
     <local.repository.path>/tmp/repository</local.repository.path>
-    <java.version>16</java.version>
+    <java.version>21</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <maven.compiler.parameters>true</maven.compiler.parameters>
-    <quarkus.platform.version>2.6.1.Final</quarkus.platform.version>
-    <version.surefire.plugin>3.0.0-M5</version.surefire.plugin>
-    <jrfDocUrl>https://bestsolution-at.github.io/jfr-doc/openjdk-17.json</jrfDocUrl>
+    <quarkus.platform.version>3.8.2</quarkus.platform.version>
+    <version.surefire.plugin>3.2.5</version.surefire.plugin>
+    <version.impsort.plugin>1.9.0</version.impsort.plugin>
+    <jrfDocUrl>foo/bar</jrfDocUrl>
   </properties>
 
   <scm>
@@ -74,13 +69,6 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>org.spockframework</groupId>
-        <artifactId>spock-bom</artifactId>
-        <version>2.0-groovy-3.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13.2</version>
@@ -95,21 +83,22 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.13.1</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>compileTests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.codehaus.gmavenplus</groupId>-->
+<!--        <artifactId>gmavenplus-plugin</artifactId>-->
+<!--        <version>3.0.2</version>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <goals>-->
+<!--              <goal>compile</goal>-->
+<!--              <goal>compileTests</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.12.1</version>
         <executions>
           <execution>
             <id>default-testCompile</id>
@@ -122,6 +111,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
         <configuration>
           <trimStackTrace>false</trimStackTrace>
           <includes>
@@ -134,6 +124,7 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
+        <version>4.1</version>
         <configuration combine.self="override">
           <header>${rootdir}/etc/license.txt</header>
           <strictCheck>true</strictCheck>

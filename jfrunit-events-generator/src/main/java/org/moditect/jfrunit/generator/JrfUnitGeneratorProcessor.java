@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 package org.moditect.jfrunit.generator;
-
 import java.io.IOException;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ import freemarker.template.TemplateException;
  */
 @SupportedOptions({ "jfrDocUrl" })
 @SupportedAnnotationTypes({ "*" })
-@SupportedSourceVersion(SourceVersion.RELEASE_16)
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 public class JrfUnitGeneratorProcessor extends AbstractProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(JrfUnitGeneratorProcessor.class);
     private static boolean processed = false;

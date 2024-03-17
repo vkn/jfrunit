@@ -17,12 +17,10 @@
  */
 package org.moditect.jfrunit
 
-import groovy.transform.PackageScope
 import jdk.jfr.consumer.RecordedEvent
 
 import java.util.stream.Collectors
 
-@PackageScope
 class JfrEventsList implements List<RecordedEvent> {
 
     private static final String WITH_PREFIX = 'with'

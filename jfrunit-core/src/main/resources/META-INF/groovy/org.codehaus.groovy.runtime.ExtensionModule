@@ -1,3 +1,0 @@
-moduleName=JfrUnit extensions
-moduleVersion=${pom.version}
-extensionClasses=org.moditect.jfrunit.JfrEventsExtension,org.moditect.jfrunit.RecordedEventExtension
