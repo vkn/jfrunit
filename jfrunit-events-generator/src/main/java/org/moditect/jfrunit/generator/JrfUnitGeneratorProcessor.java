@@ -45,7 +45,7 @@ public class JrfUnitGeneratorProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        String jfrDocUrl = processingEnv.getOptions().get("jfrDocUrl");
+        String jfrDocUrl = "scr/main/resources/jdk21-events.json";
         if (jfrDocUrl == null || processed) {
             return false;
         }

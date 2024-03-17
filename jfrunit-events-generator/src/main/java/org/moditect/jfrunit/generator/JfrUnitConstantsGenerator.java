@@ -19,6 +19,7 @@ package org.moditect.jfrunit.generator;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
 import java.net.URL;
 import java.util.HashMap;
@@ -62,8 +63,8 @@ public class JfrUnitConstantsGenerator {
             LOGGER.error(error);
             throw new IllegalArgumentException(error);
         }
-
-        JfrDoc jrfDoc = MAPPER.readValue(new BufferedInputStream(new URL(jfrDocUrl).openStream()), JfrDoc.class);
+        var resourceAsStream = JfrUnitConstantsGenerator.class.getResourceAsStream("/jdk21-events.json");
+        JfrDoc jrfDoc = MAPPER.readValue(new BufferedInputStream(resourceAsStream), JfrDoc.class);
 
         LOGGER.info("generating sources for version {} and distribution {}", jrfDoc.getVersion(), jrfDoc.getDistribution());
 

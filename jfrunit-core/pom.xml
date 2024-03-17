@@ -66,7 +66,7 @@
           <!-- due to problem in maven-compiler-plugin, for verbose mode add showWarnings -->
           <showWarnings>true</showWarnings>
           <compilerArgs>
-            <arg>-AjfrDocUrl=${jrfDocUrl}</arg>
+            <arg>-AjfrDocUrl=src/main/resources/jdk21-events.json</arg>
           </compilerArgs>
         </configuration>
       </plugin>

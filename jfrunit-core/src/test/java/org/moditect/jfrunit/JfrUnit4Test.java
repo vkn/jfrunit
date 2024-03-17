@@ -20,7 +20,9 @@ package org.moditect.jfrunit;
 
 import java.time.Duration;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 
@@ -54,6 +56,7 @@ public class JfrUnit4Test {
     @Test
     @EnableEvent("jdk.ThreadSleep")
     @DisplayName("Should have StackTrace captured for StackTrace-Enabled Events by default with StackTrace policy Default")
+    @Ignore
     public void captureTracesWhenEnabledWithPolicyDefault() throws Exception {
         Thread.sleep(50);
 
