@@ -39,7 +39,7 @@ import freemarker.template.TemplateException;
  */
 @SupportedOptions({ "jfrDocUrl" })
 @SupportedAnnotationTypes({ "*" })
-@SupportedSourceVersion(SourceVersion.RELEASE_21)
+@SupportedSourceVersion(SourceVersion.RELEASE_17)
 public class JrfUnitGeneratorProcessor extends AbstractProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(JrfUnitGeneratorProcessor.class);
     private static boolean processed = false;
