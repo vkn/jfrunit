@@ -16,6 +16,7 @@
  * limitations under the License.
  */
 package org.moditect.jfrunit.generator;
+
 import java.io.IOException;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ public class JrfUnitGeneratorProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        String jfrDocUrl = "scr/main/resources/jdk21-events.json";
+        String jfrDocUrl = processingEnv.getOptions().get("jfrDocUrl");
         if (jfrDocUrl == null || processed) {
             return false;
         }

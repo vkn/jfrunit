@@ -17,31 +17,27 @@
  */
 package org.moditect.jfrunit.generator;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.processing.ProcessingEnvironment;
-import javax.tools.JavaFileObject;
-
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
 import org.moditect.jfrunit.generator.events.model.Event;
 import org.moditect.jfrunit.generator.events.model.JfrDoc;
 import org.moditect.jfrunit.generator.events.model.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateExceptionHandler;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.tools.JavaFileObject;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.Writer;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * JFR types generator; given a JSON file that represents the standard JFR events,
@@ -58,13 +54,13 @@ public class JfrUnitConstantsGenerator {
     private static Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
 
     public static void generate(String jfrDocUrl, ProcessingEnvironment processingEnvironment) throws IOException, TemplateException {
-        if (jfrDocUrl == null) {
-            String error = "missing jfr-doc json argument (ex https://bestsolution-at.github.io/jfr-doc/openjdk-17.json)";
-            LOGGER.error(error);
-            throw new IllegalArgumentException(error);
+        String docUrl = jfrDocUrl;
+        if (docUrl == null || docUrl.isEmpty() || "${jrfDocUrl}".equals(docUrl)) {
+            var dir = System.getProperty("user.dir");
+            docUrl = "file://" + dir + "/jfrunit-events-generator/src/main/resources/jdk21-events.json";
+            LOGGER.info("Using docs from {}", docUrl);
         }
-        var resourceAsStream = JfrUnitConstantsGenerator.class.getResourceAsStream("/jdk21-events.json");
-        JfrDoc jrfDoc = MAPPER.readValue(new BufferedInputStream(resourceAsStream), JfrDoc.class);
+        JfrDoc jrfDoc = MAPPER.readValue(new BufferedInputStream(new URL(docUrl).openStream()), JfrDoc.class);
 
         LOGGER.info("generating sources for version {} and distribution {}", jrfDoc.getVersion(), jrfDoc.getDistribution());
 

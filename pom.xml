@@ -49,7 +49,6 @@
     <quarkus.platform.version>3.8.2</quarkus.platform.version>
     <version.surefire.plugin>3.2.5</version.surefire.plugin>
     <version.impsort.plugin>1.9.0</version.impsort.plugin>
-    <jrfDocUrl>foo/bar</jrfDocUrl>
   </properties>
 
   <scm>
@@ -65,6 +64,13 @@
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-bom</artifactId>
         <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.spockframework</groupId>
+        <artifactId>spock-bom</artifactId>
+        <version>2.3-groovy-3.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

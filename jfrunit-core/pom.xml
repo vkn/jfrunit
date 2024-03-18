@@ -35,6 +35,25 @@
       <artifactId>quarkus-junit5</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>2.3-groovy-3.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-junit4</artifactId>
+      <version>2.3-groovy-3.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy</artifactId>
+      <version>3.0.8</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -66,7 +85,7 @@
           <!-- due to problem in maven-compiler-plugin, for verbose mode add showWarnings -->
           <showWarnings>true</showWarnings>
           <compilerArgs>
-            <arg>-AjfrDocUrl=src/main/resources/jdk21-events.json</arg>
+            <arg>-AjfrDocUrl=${jrfDocUrl}</arg>
           </compilerArgs>
         </configuration>
       </plugin>
